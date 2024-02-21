@@ -49,11 +49,11 @@ class BreadCrumbs {
     // Adjust positions
     let temp = this.path.length;
     for (let k = 0; k < this.path.length; k++) {
-      this.path[k].posY = windowHeight - (temp * 18);
+      this.path[k].posY = windowHeight - (temp * settings.breadcrumbTypeLeading);
       --temp;
     }
 
-    console.log("breadcrumbs path updated: ");
+    //console.log("breadcrumbs path updated: ");
     this.printAllPath();
   }
 

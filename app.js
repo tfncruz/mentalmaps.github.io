@@ -30,7 +30,7 @@ function setup() {
   removeWhiteSpaces();
 
   // initialise
-  init();
+  init("0", 0);
 }
 
 function draw() {
@@ -49,15 +49,22 @@ function removeWhiteSpaces() {
 }
 
 // ---------------------------------------------------------- INIT
-function init() {
+function init(current, active) {
   bubbles = new Array(categories.length);
   initialiseBubblesArray();
 
-  currentLevel = "0";
-  activeBubbleIndex = 0;
+  currentLevel = current;
+  activeBubbleIndex = active;
 
-  breadCrumbs = new BreadCrumbs();
-  breadCrumbs.addToPath(bubbles[activeBubbleIndex].text);
+  if(active === 0) {
+    breadCrumbs = new BreadCrumbs();
+    breadCrumbs.addToPath(bubbles[activeBubbleIndex].text);
+  } else {
+    // iterate through all the breadcrumbs and update their size
+    for(let i = 0; i < breadCrumbs.path.length; i++) {
+      breadCrumbs.path[i].sizeH = settings.breadcrumbTypeSize;
+    }
+  }
 
   positionBubbles();
 }
@@ -146,7 +153,7 @@ function mouseReleased() {
   // BREADCRUMBS
   let index = breadCrumbs.checkClick();
   if (index != -1) {
-    console.log("breadCrumbs path item " + index + " " + breadCrumbs.path[index].text + " clicked" + "\n");
+    //console.log("breadCrumbs path item " + index + " " + breadCrumbs.path[index].text + " clicked" + "\n");
     breadCrumbs.updatePath(index);
 
     // set new currentLevel and activeBubbleIndex
@@ -183,8 +190,15 @@ function mouseReleased() {
 // ---------------------------------------------------------- RESIZE
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  restart();
+}
+
+function restart() {
   // re-position the bubbles
-  positionBubbles();
+  //positionBubbles();
+  settings = new Settings();
+  init(currentLevel, activeBubbleIndex);
+
   // re-position breadcrumbs
   breadCrumbs.updatePosition();
 }

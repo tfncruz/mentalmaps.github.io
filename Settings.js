@@ -38,11 +38,11 @@ class Settings {
     // bubbleTypeSizeFactor sets the size of the typeface
     // because this is responsive, the size of the typeface is a relative measure to the width of the window
     // 0.01 means 1%, 0.1 means 10%, 0.9 means 90%, etc...
-    this.bubbleTypeSizeFactor = 0.012; 
+    this.bubbleTypeSizeFactor = 0.015; 
 
     // the same goes for the background circle where the text is
     // in this case, this percentage is relative to the width of the text inside
-    this.bubbleBgSizeFactor = 0.5;
+    this.bubbleBgSizeFactor = 0.2;
 
     // Breadcrumbs type color
     this.breadcrumbTypeHue = 0;
@@ -50,7 +50,7 @@ class Settings {
     this.breadcrumbTypeBrightness = 100;
     
     // The size of the typeface of the breadcrumbs is relative to the width of the window
-    this.breadcrumbTypeSizeFactor = 0.01;
+    this.breadcrumbTypeSizeFactor = 0.015;
 
     // this the the leading applied in between the breadcrumbs (1.4 means 140% of body of the font)
     this.breadCrumbTypeLeadingFactor = 1.4;
